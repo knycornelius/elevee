@@ -1,3 +1,5 @@
+import { WHATSAPP_URL } from "../constants";
+
 export function buildWhatsAppLink({
   name,
   phoneNumber,
@@ -8,7 +10,7 @@ export function buildWhatsAppLink({
   collection: string;
 }) {
   const cleanPhone = phoneNumber.replace(/\D/g, "");
-  let message = `Hi, my name is ${name}.`;
+  let message = `Hi, my name is ${name} (${cleanPhone}).`;
 
   if (collection) {
     if (collection === "undecided") {
@@ -20,5 +22,5 @@ export function buildWhatsAppLink({
     message += ` I'm interested to visit. Could you set up a meeting?`;
   }
 
-  return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+  return `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
 }
